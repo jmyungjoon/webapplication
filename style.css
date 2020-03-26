@@ -1,0 +1,47 @@
+body.black {
+    background-color: black;
+    color: white;
+}
+body.white {
+    background-color: white;
+    color: black;
+}
+a:hover {
+    color : red;
+    cursor : pointer;
+}
+container {
+    padding: 20px;
+}
+#control {
+    margin-bottom: 20px;
+}
+#logo {
+    width: 100px;
+}
+#disqus_thread {
+    padding-top: 20px;
+} 
+#move {
+    display: inline-block;
+    transition: all 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
+    transition-timing-function: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+}
+#move:active {
+    transform: translate(-50px,-50px);
+} 
+    
+/* #control {
+    float: right;
+    padding: 10px;
+}
+.disqus_thread {
+    margin-top: 300px ;
+}
+header img {
+    float: right;
+    height: 100px;
+}
+#disqus_thread {
+    margin-top: 100px;
+} */

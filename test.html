@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        div {
+            display: inline-block;
+            transition-property: all;
+            transition-duration: 0.1s;
+        }
+        div:active {
+            transform: translate(20px, 20px);
+        }
+    </style>
+</head>
+<body>
+
+<div>
+<input type="submit" name="submlt" value="delete">
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var txt;
+  var r = confirm("Press a button!\nEither OK or Cancel.\nThe button you pressed will be displayed in the result window.");
+  if (r == true) {
+    txt = "You pressed OK!";
+  } else {
+    txt = "You pressed Cancel!";
+  }
+  document.getElementById("demo").innerHTML = txt;
+}
+</script>
+</div>
+</body>
+</html>
