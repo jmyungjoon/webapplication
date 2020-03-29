@@ -4,7 +4,7 @@ $password = $_POST['password'];
 echo $id;
 echo $password ;
 
-if(root == $id and zxcv1234 == $password) {
+if(david == $id and zxcv1234 == $password) {
     header('Location: index.php');
     } else { echo '<script>alert(" Wrong ID or password!")</script>';
     header('Location: index.html');

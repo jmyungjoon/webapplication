@@ -1,7 +1,7 @@
 <?php
 $config = array(
     "host"=>"localhost",
-    "duser"=>"root",
+    "duser"=>"david",
     "dpw"=>"zxcv1234",
     "dname"=>"opentutorials"
 );
