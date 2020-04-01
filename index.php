@@ -10,6 +10,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic");
 <head >
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="google-signin-client_id" content="721638147870-5h0p2mlg88l3u6hgb1grg9a72gcpu8st.apps.googleusercontent.com">
     <title>WEB</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
@@ -21,24 +22,32 @@ $result = mysqli_query($conn, "SELECT * FROM topic");
         }
         #move:active {
             transform: translate(-50px,-50px);
+        }
+        .badge badge-secondary {
+            text-align : center;
         }    
     </style>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- <script src="googlelogin.js"></script> -->
 </head>
 <body id="target">
     <div class="container-fluid">
-    <header class="jumbotron text-center">
-        <a href = "http://opentutorials.org"><img src="94.png" alt="life coding" class="rounded-circle" id="logo"></a>
-        <h1><a href="index.php">WEB Application</a></h1>
-    </header>
-    <div class="row">
-    <nav class="col-md-3">
-        <ul >
-            <?php
+        <header class="jumbotron text-center">
+            <a href = "http://opentutorials.org"><img src="94.png" alt="life coding" class="rounded-circle" id="logo"></a>
+            <h1><a href="index.php">WEB Application</a></h1>
+        </header>
+        <div class="row">
+            <nav class="col-md-3">
+                <ul >
+                    <?php
                 while($row = mysqli_fetch_assoc($result)){
                     echo '<li><a href="index.php?id='.$row['id'].'">'.htmlspecialchars($row['title']).' </a></li>'."\n";    
-                    } 
-            ?>
+                } 
+                ?>
         </ul>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <div class="badge badge-secondary" > Google Calander</div>
+        <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FManila&amp;src=am15dW5nam9vbkBnbWFpbC5jb20&amp;src=dXViYzBxOG1jdXRhN2wzczM5MDkxZTNyaDBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=a28uc291dGhfa29yZWEjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=a28ucGhpbGlwcGluZXMjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;color=%230B8043&amp;color=%230B8043&amp;color=%23009688" style="border:solid 1px #777" width="180" height="160" frameborder="0" scrolling="no"></iframe>        
     </nav>
     <div class="col-md-9">
     <article>
@@ -100,7 +109,21 @@ $result = mysqli_query($conn, "SELECT * FROM topic");
     </div>
     </div>
     </div>
+    <!-- <input type="button" id="loginBtn" value="checking..." onclick="
+    if(this.value === 'Login'){
+      gauth.signIn().then(function(){
+        console.log('gauth.signIn()');
+        checkLoginStatus();
+      });
+    } else {
+      gauth.signOut().then(function(){
+        console.log('gauth.signOut()');
+        checkLoginStatus();
+      });
+    }
+  "> -->
     <script src="script.js"></script>
+    
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
