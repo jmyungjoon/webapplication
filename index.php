@@ -23,8 +23,8 @@ $result = mysqli_query($conn, "SELECT * FROM topic");
         #move:active {
             transform: translate(-50px,-50px);
         }
-        .badge badge-secondary {
-            text-align : center;
+        .badge-secondary {
+            width: 184.6px;
         }    
     </style>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -40,15 +40,16 @@ $result = mysqli_query($conn, "SELECT * FROM topic");
             <nav class="col-md-3">
                 <ul >
                     <?php
-                while($row = mysqli_fetch_assoc($result)){
-                    echo '<li><a href="index.php?id='.$row['id'].'">'.htmlspecialchars($row['title']).' </a></li>'."\n";    
-                } 
-                ?>
-        </ul>
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-        <div class="badge badge-secondary" > Google Calander</div>
-        <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FManila&amp;src=am15dW5nam9vbkBnbWFpbC5jb20&amp;src=dXViYzBxOG1jdXRhN2wzczM5MDkxZTNyaDBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=a28uc291dGhfa29yZWEjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=a28ucGhpbGlwcGluZXMjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;color=%230B8043&amp;color=%230B8043&amp;color=%23009688" style="border:solid 1px #777" width="180" height="160" frameborder="0" scrolling="no"></iframe>        
-    </nav>
+                        while($row = mysqli_fetch_assoc($result)){
+                        echo '<li><a href="index.php?id='.$row['id'].'">'.htmlspecialchars($row['title']).' </a></li>'."\n";    
+                        } 
+                    ?>
+                </ul>
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <div class="badge badge-secondary" > Google Calendar</div>
+                <div></div>
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FManila&amp;src=am15dW5nam9vbkBnbWFpbC5jb20&amp;src=dXViYzBxOG1jdXRhN2wzczM5MDkxZTNyaDBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=a28uc291dGhfa29yZWEjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=a28ucGhpbGlwcGluZXMjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;color=%230B8043&amp;color=%230B8043&amp;color=%23009688" style="border:solid 1px #777" width="185" height="200" frameborder="0" scrolling="no" class="border border-primary"></iframe>        
+            </nav>
     <div class="col-md-9">
     <article>
         <?php

@@ -36,15 +36,22 @@
       console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
       console.log(profile.getId());
       log_id = profile.getId();
-      if(log_id != "") { window.location.href = "index.php"; } else { }
-    }
-     
+      if(log_id != "") { 
+        func_confirm();
+        } else { }
+      }
+      function func_confirm(){
+                if(confirm('You are loged in Google Account. Do you want use it?')){
+                  window.location.href = "index.php";
+                } else {
+                }
+            }
   </script>
 </head>
 <body>
   <div class="container-fluid" >
   <header class="jumbotron text-center">
-    <a href = "http://opentutorials.org"><img src="94.png" alt="life coding" class="rounded-circle" id="logo"></a>
+    <a href = "http://ittcserver.com"><img src="ittc.jpeg" alt="life coding" class="border border-success rounded-circle" id="logo" ></a>
     <h1><a href="index.html">WEB Application</a></h1>
   </header>
   <div id="control" class="jumbotron text-center" style="width: 300px ; margin:auto;">
