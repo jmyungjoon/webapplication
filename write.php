@@ -32,7 +32,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic");
 <body id="target">
 <div class="container-fluid">
     <header class="jumbotron text-center">
-        <a href = "http://opentutorials.org"><img src="94.png" alt="life coding" class="rounded-circle" id="logo"></a>
+        <a href = "http://ittcserver.com"><img src="ittc.jpeg" alt="life coding" class="border border-success rounded-circle" id="logo" ></a>
         <h1><a href="index.php">Application</a></h1>
     </header>
     <div class="row">
