@@ -48,7 +48,8 @@ $result = mysqli_query($conn, "SELECT * FROM topic");
                 <div class="g-signin2" data-onsuccess="onSignIn"></div>
                 <div class="badge badge-secondary" > Google Calendar</div>
                 <div></div>
-                <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FManila&amp;src=am15dW5nam9vbkBnbWFpbC5jb20&amp;src=dXViYzBxOG1jdXRhN2wzczM5MDkxZTNyaDBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=a28uc291dGhfa29yZWEjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=a28ucGhpbGlwcGluZXMjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;color=%230B8043&amp;color=%230B8043&amp;color=%23009688" style="border:solid 1px #777" width="185" height="200" frameborder="0" scrolling="no" class="border border-primary"></iframe>        
+                <!-- <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FManila&amp;src=am15dW5nam9vbkBnbWFpbC5jb20&amp;src=dXViYzBxOG1jdXRhN2wzczM5MDkxZTNyaDBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=a28uc291dGhfa29yZWEjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=a28ucGhpbGlwcGluZXMjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;color=%230B8043&amp;color=%230B8043&amp;color=%23009688" style="border:solid 1px #777" width="185" height="200" frameborder="0" scrolling="no" class="border border-primary"></iframe>         -->
+                    <iframe src="https://calendar.google.com/calendar/embed?src=bt6s2m8imo6ir1istf4k1ek3vc%40group.calendar.google.com&ctz=Asia%2FManila" style="border: 0" width="185" height="200" frameborder="0" scrolling="no" class="border border-primary"></iframe>
             </nav>
     <div class="col-md-9">
     <article>
