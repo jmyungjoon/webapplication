@@ -2,7 +2,7 @@
 require("config/config.php");
 require("lib/db.php");
 $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
-$result = mysqli_query($conn, "SELECT * FROM topic");  
+$result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");  
 
 ?>
 <!DOCTYPE html>
@@ -14,6 +14,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic");
     <title>WEB</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style>
         #move {
             display: inline-block;
@@ -26,6 +27,9 @@ $result = mysqli_query($conn, "SELECT * FROM topic");
         .badge-secondary {
             width: 184.6px;
         }    
+        @media(max-width:1600px) {
+
+        }
     </style>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <!-- <script src="googlelogin.js"></script> -->
@@ -45,13 +49,112 @@ $result = mysqli_query($conn, "SELECT * FROM topic");
                         } 
                     ?>
                 </ul>
+                <!-- google Login -->
                 <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <!-- Google Calendar -->
                 <div class="badge badge-secondary" > Google Calendar</div>
                 <div></div>
-                <!-- <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FManila&amp;src=am15dW5nam9vbkBnbWFpbC5jb20&amp;src=dXViYzBxOG1jdXRhN2wzczM5MDkxZTNyaDBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&amp;src=a28uc291dGhfa29yZWEjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=a28ucGhpbGlwcGluZXMjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%234285F4&amp;color=%230B8043&amp;color=%230B8043&amp;color=%23009688" style="border:solid 1px #777" width="185" height="200" frameborder="0" scrolling="no" class="border border-primary"></iframe>         -->
-                    <iframe src="https://calendar.google.com/calendar/embed?src=chodavid1970%40gmail.com&ctz=Asia%2FManila" style="border: 0" width="185" height="200" frameborder="0" scrolling="no" class="border border-primary"></iframe>
-                    <!-- <iframe src="https://calendar.google.com/calendar/embed?src=bt6s2m8imo6ir1istf4k1ek3vc%40group.calendar.google.com&ctz=Asia%2FManila" style="border: 0" width="185" height="200" frameborder="0" scrolling="no" class="border border-primary"></iframe> -->
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FManila&amp;src=Y2hvZGF2aWQxOTcwQGdtYWlsLmNvbQ&amp;color=%23039BE5&amp;showTz=0" style="border:solid 1px #777" width="185" height="200" frameborder="0" scrolling="no"></iframe>
+                
+                <!-- Clock -->
+                    <canvas id="canvas" width="185" height="185"
+                    style="background-color:#333" class="border border-primary">
+                    </canvas>
+
+                    <script>
+                    var canvas = document.getElementById("canvas");
+                    var ctx = canvas.getContext("2d");
+                    var radius = canvas.height / 2;
+                    ctx.translate(radius, radius);
+                    radius = radius * 0.90
+                    setInterval(drawClock, 1000);
+
+                    function drawClock() {
+                    drawFace(ctx, radius);
+                    drawNumbers(ctx, radius);
+                    drawTime(ctx, radius);
+                    }
+
+                    function drawFace(ctx, radius) {
+                    var grad;
+                    ctx.beginPath();
+                    ctx.arc(0, 0, radius, 0, 2*Math.PI);
+                    ctx.fillStyle = 'white';
+                    ctx.fill();
+                    grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+                    grad.addColorStop(0, '#333');
+                    grad.addColorStop(0.5, 'white');
+                    grad.addColorStop(1, '#333');
+                    ctx.strokeStyle = grad;
+                    ctx.lineWidth = radius*0.1;
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+                    ctx.fillStyle = '#333';
+                    ctx.fill();
+                    }
+
+                    function drawNumbers(ctx, radius) {
+                    var ang;
+                    var num;
+                    ctx.font = radius*0.15 + "px arial";
+                    ctx.textBaseline="middle";
+                    ctx.textAlign="center";
+                    for(num = 1; num < 13; num++){
+                        ang = num * Math.PI / 6;
+                        ctx.rotate(ang);
+                        ctx.translate(0, -radius*0.85);
+                        ctx.rotate(-ang);
+                        ctx.fillText(num.toString(), 0, 0);
+                        ctx.rotate(ang);
+                        ctx.translate(0, radius*0.85);
+                        ctx.rotate(-ang);
+                    }
+                    }
+
+                    function drawTime(ctx, radius){
+                        var now = new Date();
+                        var hour = now.getHours();
+                        var minute = now.getMinutes();
+                        var second = now.getSeconds();
+                        //hour
+                        hour=hour%12;
+                        hour=(hour*Math.PI/6)+
+                        (minute*Math.PI/(6*60))+
+                        (second*Math.PI/(360*60));
+                        drawHand(ctx, hour, radius*0.5, radius*0.07);
+                        //minute
+                        minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+                        drawHand(ctx, minute, radius*0.8, radius*0.07);
+                        // second
+                        second=(second*Math.PI/30);
+                        drawHand(ctx, second, radius*0.9, radius*0.02);
+                    }
+
+                    function drawHand(ctx, pos, length, width) {
+                        ctx.beginPath();
+                        ctx.lineWidth = width;
+                        ctx.lineCap = "round";
+                        ctx.moveTo(0,0);
+                        ctx.rotate(pos);
+                        ctx.lineTo(0, -length);
+                        ctx.stroke();
+                        ctx.rotate(-pos);
+                    }
+                    
+                    </script>
+                    <script>
+                            $(window).resize(function() {
+                                if($( window ).width()>1500) {
+                                $("nav").removeClass("col-md-3").addClass("col-md-2");
+                                } else { $("nav").removeClass("col-md-2").addClass("col-md-3");
+
+                                }
+                            });
+                    </script>
             </nav>
+            
+            
     <div class="col-md-9">
     <article>
         <?php
