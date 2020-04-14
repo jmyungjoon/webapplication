@@ -162,7 +162,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
                     log_id = profile.getId();
                     Name = profile.getName();
                     if(log_id != "") { 
-                        $(".g-signin2").$(".g-signin2").append("Hi!  "+Name);
+                        $(".g-signin2").append("Hi!  "+Name);
                         } else {
                         };
                     }
