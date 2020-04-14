@@ -161,9 +161,10 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
                     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
                     console.log(profile.getId());
                     log_id = profile.getId();
+                    Name = profile.getName();
                     if(log_id != "") { 
                         var func_name = function (){
-                                $(".g-signin2").after(profile.getName());
+                                $(".g-signin2").after(Name);
                                 } 
                         } else { }
                     }
