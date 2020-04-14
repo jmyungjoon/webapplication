@@ -162,12 +162,12 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
                     console.log(profile.getId());
                     log_id = profile.getId();
                     if(log_id != "") { 
-                        func_name();
+                        func_name function (){
+                                $(".g-signin2").after(profile.getName());
+                                } 
                         } else { }
                     }
-                    function func_name(){
-                                $(".g-signin2").after("profile.getNmae()");
-                                } 
+                    
                 </script>
                 <!-- Google Calendar -->
                 <div class="badge badge-secondary" > Google Calendar</div>
