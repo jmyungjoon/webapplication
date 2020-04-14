@@ -41,7 +41,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
             <h1><a href="index.php">WEB Application</a></h1>
         </header>
         <div class="row">
-            <nav class="col-md-3">
+            <nav class="col-md-2">
                 <ul >
                     <?php
                         while($row = mysqli_fetch_assoc($result)){
@@ -49,16 +49,11 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
                         } 
                     ?>
                 </ul>
-                <!-- google Login -->
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                <!-- Google Calendar -->
-                <div class="badge badge-secondary" > Google Calendar</div>
-                <div></div>
-                <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FManila&amp;src=Y2hvZGF2aWQxOTcwQGdtYWlsLmNvbQ&amp;color=%23039BE5&amp;showTz=0" style="border:solid 1px #777" width="185" height="200" frameborder="0" scrolling="no"></iframe>
+                
                 
                 <!-- Clock -->
-                    <canvas id="canvas" width="185" height="185"
-                    style="background-color:#333" class="border border-primary">
+                    <canvas id="canvas" width="120" height="120"
+                    style="background-color:#333" class="border-bottom border-primary rounded-circle">
                     </canvas>
 
                     <script>
@@ -152,6 +147,32 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
                                 }
                             });
                     </script>
+                    <!-- google Login -->
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <script>
+                    document.cookie = "safeCookie1=foo; SameSite=Lax";
+                    document.cookie = "safeCookie2=foo";
+                    document.cookie = "crossCookie=bar; SameSite=None; Secure";
+                    function onSignIn(googleUser) {
+                    var profile = googleUser.getBasicProfile();
+                    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                    console.log('Name: ' + profile.getName());
+                    console.log('Image URL: ' + profile.getImageUrl());
+                    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+                    console.log(profile.getId());
+                    log_id = profile.getId();
+                    if(log_id != "") { 
+                        func_name();
+                        } else { }
+                    }
+                    function func_name(){
+                                $(".g-signin2").after("profile.getNmae()");
+                                } 
+                </script>
+                <!-- Google Calendar -->
+                <div class="badge badge-secondary" > Google Calendar</div>
+                <div></div>
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FManila&amp;src=Y2hvZGF2aWQxOTcwQGdtYWlsLmNvbQ&amp;color=%23039BE5&amp;showTz=0" style="border:solid 1px #777" width="185" height="200" frameborder="0" scrolling="no"></iframe>
             </nav>
             
             
