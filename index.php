@@ -164,7 +164,8 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
                     if(log_id != "") { 
                         $(".g-signin2").after(Name);
                         } else {
-                        }
+                        };
+                    }
                 </script>
                 <!-- Google Calendar -->
                 <div class="badge badge-secondary" > Google Calendar</div>
