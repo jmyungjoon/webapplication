@@ -162,7 +162,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
                     console.log(profile.getId());
                     log_id = profile.getId();
                     if(log_id != "") { 
-                        func_name function (){
+                        var func_name = function (){
                                 $(".g-signin2").after(profile.getName());
                                 } 
                         } else { }
