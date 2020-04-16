@@ -41,7 +41,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
             <h1><a href="index.php">WEB Application</a></h1>
         </header>
         <div class="row">
-            <nav class="col-md-2">
+            <nav class="col-md-3">
                 <ul >
                     <?php
                         while($row = mysqli_fetch_assoc($result)){
