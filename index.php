@@ -234,19 +234,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
     </div>
     </div>
     </div>
-    <!-- <input type="button" id="loginBtn" value="checking..." onclick="
-    if(this.value === 'Login'){
-      gauth.signIn().then(function(){
-        console.log('gauth.signIn()');
-        checkLoginStatus();
-      });
-    } else {
-      gauth.signOut().then(function(){
-        console.log('gauth.signOut()');
-        checkLoginStatus();
-      });
-    }
-  "> -->
+    
     <script src="script.js"></script>
     
 <!--Start of Tawk.to Script-->

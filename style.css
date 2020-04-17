@@ -28,7 +28,7 @@ container {
     transition-timing-function: cubic-bezier(0.680, -0.550, 0.265, 1.550);
 }
 #move:active {
-    transform: translate(-50px,-50px);
+    transform: translate(-10px,-10px);
 } 
     
 /* #control {
