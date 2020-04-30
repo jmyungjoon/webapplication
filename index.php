@@ -33,25 +33,35 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
     </style>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <!-- <script src="googlelogin.js"></script> -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
 </head>
 <body id="target">
     <div class="container-fluid">
         <header class="jumbotron text-center">
-            <a href = "http://ittcserver.com"><img src="ittc.jpeg" alt="life coding" class="border border-success rounded-circle" id="logo" ></a>
-            <h1><a href="index.php">WEB Application</a></h1>
+            <div data-aos="fade-down">
+                <a href = "http://ittcserver.com"><img src="ittc.jpeg" alt="life coding" class="border border-success rounded-circle" id="logo" ></a>
+                <h1><a href="index.php">WEB Application</a></h1>
+            </div>
         </header>
         <div class="row">
             <nav class="col-md-3">
-                <ul >
-                    <?php
-                        while($row = mysqli_fetch_assoc($result)){
-                        echo '<li><a href="index.php?id='.$row['id'].'">'.htmlspecialchars($row['title']).' </a></li>'."\n";    
-                        } 
-                    ?>
-                </ul>
-                
+                <div data-aos="fade-right">
+                    <ul >
+                        <?php
+                            while($row = mysqli_fetch_assoc($result)){
+                            echo '<li><a href="index.php?id='.$row['id'].'">'.htmlspecialchars($row['title']).' </a></li>'."\n";    
+                            } 
+                        ?>
+                    </ul>
+                </div>    
                 
                 <!-- Clock -->
+                <div data-aos="fade-right">
                     <canvas id="canvas" width="120" height="120"
                     style="background-color:#333" class="border-bottom border-primary rounded-circle">
                     </canvas>
@@ -147,8 +157,9 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
                                 }
                             });
                     </script>
+                </div>
                     <!-- google Login -->
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <div class="g-signin2" data-onsuccess="onSignIn" data-aos="fade-right"></div>
                 <script>
                     document.cookie = "safeCookie1=foo; SameSite=Lax";
                     document.cookie = "safeCookie2=foo";
@@ -168,25 +179,25 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
                     }
                 </script>
                 <!-- Google Calendar -->
-                <div class="badge badge-secondary" > Google Calendar</div>
+                <div class="badge badge-secondary" data-aos="fade-right"> Google Calendar</div>
                 <div></div>
-                <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FManila&amp;src=Y2hvZGF2aWQxOTcwQGdtYWlsLmNvbQ&amp;color=%23039BE5&amp;showTz=0" style="border:solid 1px #777" width="185" height="200" frameborder="0" scrolling="no"></iframe>
+                <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FManila&amp;src=Y2hvZGF2aWQxOTcwQGdtYWlsLmNvbQ&amp;color=%23039BE5&amp;showTz=0" style="border:solid 1px #777" width="185" height="200" frameborder="0" scrolling="no" data-aos="fade-right"></iframe>
             </nav>
             
             
     <div class="col-md-9">
-    <article>
+    <article data-aos="fade-up">
         <?php
         if(empty($_GET['id']) === false) {
             $sql = "SELECT topic.id,title,name,description FROM topic LEFT JOIN user ON topic.author = user.id WHERE topic.id=".$_GET['id'];
             $result = mysqli_query($conn,$sql);
             $row = mysqli_fetch_assoc($result);
-            echo '<h2>'.htmlspecialchars($row['title']).'</h2>';
-            echo '<p>'.htmlspecialchars($row['name']).'</p>';
+            echo '<h2 >'.htmlspecialchars($row['title']).'</h2>';
+            echo '<p >'.htmlspecialchars($row['name']).'</p>';
+           
             echo strip_tags($row['description'], '<a><h1><h2><h3><h4><ul><ol><li>') ;
-            
             } else { ?>
-                <h2>Welcome to Web Application</h2> <?php
+                <h2 data-aos="fade-left">Welcome to Web Application</h2> <?php
             }
         ?>
         
@@ -194,16 +205,16 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
         </article>
         <hr>
         <div id="control">
-        <div class="btn-group" role="group" aria-label="...">
+        <div class="btn-group" role="group" aria-label="..." data-aos="fade-up">
             <input type="button" value="white" id="white_btn" class="btn btn-info btn-lg"/>
             <input type="button" value="black" id="black_btn" class="btn btn-info btn-lg"/>
         </div>
-        <a href="write.php" id = "move" class="btn btn-success btn-lg">New</a>
+        <a href="write.php" id = "move" class="btn btn-success btn-lg" data-aos="fade-up">New</a>
         <?php
         if(empty($_GET['id']) === false) { 
             ?>
-            <a href="update.php?id=<?=$_GET['id']?>" id = "move" class="btn btn-success btn-lg">Update</a>
-            <a href="delete.php?id=<?=$_GET['id']?>" id = "move" class="btn btn-danger btn-lg">Delete</a> 
+            <a href="update.php?id=<?=$_GET['id']?>" id = "move" class="btn btn-success btn-lg" data-aos="fade-up">Update</a>
+            <a href="delete.php?id=<?=$_GET['id']?>" id = "move" class="btn btn-danger btn-lg" data-aos="fade-up">Delete</a> 
             
         <div id="disqus_thread"></div>
         <script>
@@ -255,5 +266,17 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
