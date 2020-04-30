@@ -186,7 +186,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
             
             
     <div class="col-md-9">
-    <article data-aos="fade-up">
+    <article data-aos="zoom-in">
         <?php
         if(empty($_GET['id']) === false) {
             $sql = "SELECT topic.id,title,name,description FROM topic LEFT JOIN user ON topic.author = user.id WHERE topic.id=".$_GET['id'];
@@ -197,7 +197,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
            
             echo strip_tags($row['description'], '<a><h1><h2><h3><h4><ul><ol><li>') ;
             } else { ?>
-                <h2 data-aos="fade-left">Welcome to Web Application</h2> <?php
+                <h2 data-aos="zoom-in">Welcome to Web Application</h2> <?php
             }
         ?>
         
@@ -205,16 +205,16 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
         </article>
         <hr>
         <div id="control">
-        <div class="btn-group" role="group" aria-label="..." data-aos="fade-up">
+        <div class="btn-group" role="group" aria-label="..." data-aos="zoom-in">
             <input type="button" value="white" id="white_btn" class="btn btn-info btn-lg"/>
             <input type="button" value="black" id="black_btn" class="btn btn-info btn-lg"/>
         </div>
-        <a href="write.php" id = "move" class="btn btn-success btn-lg" data-aos="fade-up">New</a>
+        <a href="write.php" id = "move" class="btn btn-success btn-lg" data-aos="zoom-in">New</a>
         <?php
         if(empty($_GET['id']) === false) { 
             ?>
-            <a href="update.php?id=<?=$_GET['id']?>" id = "move" class="btn btn-success btn-lg" data-aos="fade-up">Update</a>
-            <a href="delete.php?id=<?=$_GET['id']?>" id = "move" class="btn btn-danger btn-lg" data-aos="fade-up">Delete</a> 
+            <a href="update.php?id=<?=$_GET['id']?>" id = "move" class="btn btn-success btn-lg" data-aos="zoom-in">Update</a>
+            <a href="delete.php?id=<?=$_GET['id']?>" id = "move" class="btn btn-danger btn-lg" data-aos="zoom-in">Delete</a> 
             
         <div id="disqus_thread"></div>
         <script>
