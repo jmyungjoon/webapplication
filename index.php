@@ -22,11 +22,25 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
             transition-timing-function: cubic-bezier(0.680, -0.550, 0.265, 1.550);
         }
         #move:active {
-            transform: translate(-50px,-50px);
+            transform: translate(-10px,-10px);
         }
         .badge-secondary {
             width: 184.6px;
-        }    
+        }  
+
+        li button {
+            padding: 0;
+            border: none;
+            background: none;
+            color:blue
+        }  
+
+        li button:hover {
+            under-line: white;
+            color:red;
+            text-decoration: underline;
+            text-decoration-color: red;
+        }  
         @media(max-width:1600px) {
 
         }
@@ -49,12 +63,12 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
             </div>
         </header>
         <div class="row">
-            <nav class="col-md-3">
+            <nav class="col-md-3 col-xs-3">
                 <div data-aos="fade-right">
                     <ul >
                         <?php
-                            while($row = mysqli_fetch_assoc($result)){
-                            echo '<li><a href="index.php?id='.$row['id'].'">'.htmlspecialchars($row['title']).' </a></li>'."\n";    
+                            while($row = mysqli_fetch_assoc($result)){ 
+                            echo '<li><button onclick="getData('.$row['id'].')" value="'.$row['id'].'" >'.htmlspecialchars($row['title']).'</button></li>'."\n";
                             } 
                         ?>
                     </ul>
@@ -185,9 +199,10 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
             </nav>
             
             
-    <div class="col-md-9">
+    <div class="col-md-9 col-xs-9">
     <article data-aos="zoom-in">
-        <?php
+        <div id="demo"><h2 data-aos="zoom-in">Welcome to Web Application</h2></div>
+        <!-- <?php
         if(empty($_GET['id']) === false) {
             $sql = "SELECT topic.id,title,name,description FROM topic LEFT JOIN user ON topic.author = user.id WHERE topic.id=".$_GET['id'];
             $result = mysqli_query($conn,$sql);
@@ -199,7 +214,20 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
             } else { ?>
                 <h2 data-aos="zoom-in">Welcome to Web Application</h2> <?php
             }
-        ?>
+        ?> -->
+
+        <script>
+            function getData(d1){
+                $.ajax({  
+                    url:"read.php",
+                    method:"POST", 
+                    data:'id='+d1,
+                    success:function(data){
+                        document.getElementById('demo').innerHTML=data; 
+                    }
+                });
+              }
+        </script>
         
 
         </article>
@@ -210,12 +238,10 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
             <input type="button" value="black" id="black_btn" class="btn btn-info btn-lg"/>
         </div>
         <a href="write.php" id = "move" class="btn btn-success btn-lg" data-aos="zoom-in">New</a>
-        <?php
-        if(empty($_GET['id']) === false) { 
-            ?>
-            <a href="update.php?id=<?=$_GET['id']?>" id = "move" class="btn btn-success btn-lg" data-aos="zoom-in">Update</a>
-            <a href="delete.php?id=<?=$_GET['id']?>" id = "move" class="btn btn-danger btn-lg" data-aos="zoom-in">Delete</a> 
-            
+        
+            <a href="update.php" id = "move" class="btn btn-success btn-lg" data-aos="zoom-in">Update</a>
+            <a href="delete.php" id = "move" class="btn btn-danger btn-lg" data-aos="zoom-in">Delete</a> 
+        
         <div id="disqus_thread"></div>
         <script>
         
@@ -236,10 +262,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
         })();
         </script>
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <?php } else { 
-            
-        } ?>
-        
+       
 
     </div>
     </div>

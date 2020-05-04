@@ -35,7 +35,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
         <ul >
             <?php
                 while($row = mysqli_fetch_assoc($result)){
-                    echo '<li><a href="index.php?id='.$row['id'].'">'.htmlspecialchars($row['title']).'</a></li>'."\n";    
+                    echo '<li><a href="update.php?id='.$row['id'].'">'.htmlspecialchars($row['title']).'</a></li>'."\n";    
                     } 
             ?>
         </ul>
