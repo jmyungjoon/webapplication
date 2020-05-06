@@ -31,17 +31,19 @@ container {
     transform: translate(-10px,-10px);
 } 
     
-/* #control {
-    float: right;
-    padding: 10px;
-}
-.disqus_thread {
-    margin-top: 300px ;
-}
-header img {
-    float: right;
-    height: 100px;
-}
-#disqus_thread {
-    margin-top: 100px;
-} */
+.badge-secondary {
+    width: 184.6px;
+}  
+
+li button {
+    padding: 0;
+    border: none;
+    background: none;
+    color:blue
+}  
+
+li button:hover {
+    color:red;
+    text-decoration: underline;
+    text-decoration-color: red;
+}  

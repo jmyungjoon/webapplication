@@ -15,38 +15,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <style>
-        #move {
-            display: inline-block;
-            transition: all 500ms cubic-bezier(0.680, -0.550, 0.265, 1.550);
-            transition-timing-function: cubic-bezier(0.680, -0.550, 0.265, 1.550);
-        }
-        #move:active {
-            transform: translate(-10px,-10px);
-        }
-        .badge-secondary {
-            width: 184.6px;
-        }  
-
-        li button {
-            padding: 0;
-            border: none;
-            background: none;
-            color:blue
-        }  
-
-        li button:hover {
-            under-line: white;
-            color:red;
-            text-decoration: underline;
-            text-decoration-color: red;
-        }  
-        @media(max-width:1600px) {
-
-        }
-    </style>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <!-- <script src="googlelogin.js"></script> -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
     <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -79,89 +48,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
                     <canvas id="canvas" width="120" height="120"
                     style="background-color:#333" class="border-bottom border-primary rounded-circle">
                     </canvas>
-
-                    <script>
-                    var canvas = document.getElementById("canvas");
-                    var ctx = canvas.getContext("2d");
-                    var radius = canvas.height / 2;
-                    ctx.translate(radius, radius);
-                    radius = radius * 0.90
-                    setInterval(drawClock, 1000);
-
-                    function drawClock() {
-                    drawFace(ctx, radius);
-                    drawNumbers(ctx, radius);
-                    drawTime(ctx, radius);
-                    }
-
-                    function drawFace(ctx, radius) {
-                    var grad;
-                    ctx.beginPath();
-                    ctx.arc(0, 0, radius, 0, 2*Math.PI);
-                    ctx.fillStyle = 'white';
-                    ctx.fill();
-                    grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
-                    grad.addColorStop(0, '#333');
-                    grad.addColorStop(0.5, 'white');
-                    grad.addColorStop(1, '#333');
-                    ctx.strokeStyle = grad;
-                    ctx.lineWidth = radius*0.1;
-                    ctx.stroke();
-                    ctx.beginPath();
-                    ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
-                    ctx.fillStyle = '#333';
-                    ctx.fill();
-                    }
-
-                    function drawNumbers(ctx, radius) {
-                    var ang;
-                    var num;
-                    ctx.font = radius*0.15 + "px arial";
-                    ctx.textBaseline="middle";
-                    ctx.textAlign="center";
-                    for(num = 1; num < 13; num++){
-                        ang = num * Math.PI / 6;
-                        ctx.rotate(ang);
-                        ctx.translate(0, -radius*0.85);
-                        ctx.rotate(-ang);
-                        ctx.fillText(num.toString(), 0, 0);
-                        ctx.rotate(ang);
-                        ctx.translate(0, radius*0.85);
-                        ctx.rotate(-ang);
-                    }
-                    }
-
-                    function drawTime(ctx, radius){
-                        var now = new Date();
-                        var hour = now.getHours();
-                        var minute = now.getMinutes();
-                        var second = now.getSeconds();
-                        //hour
-                        hour=hour%12;
-                        hour=(hour*Math.PI/6)+
-                        (minute*Math.PI/(6*60))+
-                        (second*Math.PI/(360*60));
-                        drawHand(ctx, hour, radius*0.5, radius*0.07);
-                        //minute
-                        minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
-                        drawHand(ctx, minute, radius*0.8, radius*0.07);
-                        // second
-                        second=(second*Math.PI/30);
-                        drawHand(ctx, second, radius*0.9, radius*0.02);
-                    }
-
-                    function drawHand(ctx, pos, length, width) {
-                        ctx.beginPath();
-                        ctx.lineWidth = width;
-                        ctx.lineCap = "round";
-                        ctx.moveTo(0,0);
-                        ctx.rotate(pos);
-                        ctx.lineTo(0, -length);
-                        ctx.stroke();
-                        ctx.rotate(-pos);
-                    }
-                    
-                    </script>
+                    <script src="clock.js"></script>
                     <script>
                             $(window).resize(function() {
                                 if($( window ).width()>1500) {
@@ -174,24 +61,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
                 </div>
                     <!-- google Login -->
                 <div class="g-signin2" data-onsuccess="onSignIn" data-aos="fade-right"></div>
-                <script>
-                    document.cookie = "safeCookie1=foo; SameSite=Lax";
-                    document.cookie = "safeCookie2=foo";
-                    document.cookie = "crossCookie=bar; SameSite=None; Secure";
-                    function onSignIn(googleUser) {
-                    var profile = googleUser.getBasicProfile();
-                    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-                    console.log('Name: ' + profile.getName());
-                    console.log('Image URL: ' + profile.getImageUrl());
-                    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-                    log_id = profile.getId();
-                    Name = profile.getName();
-                    if(log_id != "") { 
-                        $(".g-signin2").append("Hi!  "+Name);
-                        } else {
-                        };
-                    }
-                </script>
+                <script src="googlesignin2.js"></script>
                 <!-- Google Calendar -->
                 <div class="badge badge-secondary" data-aos="fade-right"> Google Calendar</div>
                 <div></div>
@@ -202,86 +72,57 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
     <div class="col-md-9 col-xs-9">
     <article data-aos="zoom-in">
         <div id="demo"><h2 data-aos="zoom-in">Welcome to Web Application</h2></div>
-        <!-- <?php
-        if(empty($_GET['id']) === false) {
-            $sql = "SELECT topic.id,title,name,description FROM topic LEFT JOIN user ON topic.author = user.id WHERE topic.id=".$_GET['id'];
-            $result = mysqli_query($conn,$sql);
-            $row = mysqli_fetch_assoc($result);
-            echo '<h2 >'.htmlspecialchars($row['title']).'</h2>';
-            echo '<p >'.htmlspecialchars($row['name']).'</p>';
-           
-            echo strip_tags($row['description'], '<a><h1><h2><h3><h4><ul><ol><li>') ;
-            } else { ?>
-                <h2 data-aos="zoom-in">Welcome to Web Application</h2> <?php
-            }
-        ?> -->
-
-        <script>
-            function getData(d1){
-                $.ajax({  
-                    url:"read.php",
-                    method:"POST", 
-                    data:'id='+d1,
-                    success:function(data){
-                        document.getElementById('demo').innerHTML=data; 
-                    }
-                });
-              }
-        </script>
-        
-
-        </article>
+            <script>
+                function getData(d1){
+                    $.ajax({  
+                        url:"read.php",
+                        method:"POST", 
+                        data:'id='+d1,
+                        success:function(data){
+                            document.getElementById('demo').innerHTML=data; 
+                        }
+                    });
+                }
+            </script>
+    </article>
         <hr>
         <div id="control">
-        <div class="btn-group" role="group" aria-label="..." data-aos="zoom-in">
-            <input type="button" value="white" id="white_btn" class="btn btn-info btn-lg"/>
-            <input type="button" value="black" id="black_btn" class="btn btn-info btn-lg"/>
-        </div>
-        <a href="write.php" id = "move" class="btn btn-success btn-lg" data-aos="zoom-in">New</a>
-        
+            <div class="btn-group" role="group" aria-label="..." data-aos="zoom-in">
+                <input type="button" value="white" id="white_btn" class="btn btn-info btn-lg"/>
+                <input type="button" value="black" id="black_btn" class="btn btn-info btn-lg"/>
+            </div>
+            <a href="write.php" id = "move" class="btn btn-success btn-lg" data-aos="zoom-in">New</a>
             <a href="update.php" id = "move" class="btn btn-success btn-lg" data-aos="zoom-in">Update</a>
             <a href="delete.php" id = "move" class="btn btn-danger btn-lg" data-aos="zoom-in">Delete</a> 
         
-        <div id="disqus_thread"></div>
-        <script>
-        
-        /**
-        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-        /*
-        var disqus_config = function () {
-        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        */
-        (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        s.src = 'https://webapplicationpractice.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-        })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-       
-
-    </div>
-    </div>
+            <div id="disqus_thread"></div>
+                <script>
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://webapplicationpractice.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            </div>
+        </div>
     </div>
     </div>
     
     <script src="script.js"></script>
     
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/5e6339098d24fc22658644e8/1e3kc889i';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/5e6339098d24fc22658644e8/1e3kc889i';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
     </script>
     <!--End of Tawk.to Script-->
     <!-- Optional JavaScript -->
