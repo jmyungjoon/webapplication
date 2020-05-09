@@ -1,9 +1,7 @@
 <?php
 require("config/config.php");
 require("lib/db.php");
-$conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
-$result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");  
-
+require("lib/readingDB.php");  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,27 +35,18 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
                     <ul >
                         <?php
                             while($row = mysqli_fetch_assoc($result)){ 
-                            echo '<li><button onclick="getData('.$row['id'].')" value="'.$row['id'].'" >'.htmlspecialchars($row['title']).'</button></li>'."\n";
+                            echo '<li><button onclick="getData('.$row['id'].')" name = "'.$row['id'].'" method="GET" value="'.$row['id'].'" >'.htmlspecialchars($row['title']).'</button></li>'."\n";
                             } 
                         ?>
-                    </ul>
+                </ul>
                 </div>    
-                
                 <!-- Clock -->
                 <div data-aos="fade-right">
                     <canvas id="canvas" width="120" height="120"
                     style="background-color:#333" class="border-bottom border-primary rounded-circle">
                     </canvas>
                     <script src="clock.js"></script>
-                    <script>
-                            $(window).resize(function() {
-                                if($( window ).width()>1500) {
-                                $("nav").removeClass("col-md-3").addClass("col-md-2");
-                                } else { $("nav").removeClass("col-md-2").addClass("col-md-3");
-
-                                }
-                            });
-                    </script>
+                    <script src="resize.js"></script>
                 </div>
                     <!-- google Login -->
                 <div class="g-signin2" data-onsuccess="onSignIn" data-aos="fade-right"></div>
@@ -82,6 +71,7 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
                             document.getElementById('demo').innerHTML=data; 
                         }
                     });
+                    return d1;
                 }
             </script>
     </article>
@@ -92,9 +82,9 @@ $result = mysqli_query($conn, "SELECT * FROM topic ORDER BY topic.title ASC");
                 <input type="button" value="black" id="black_btn" class="btn btn-info btn-lg"/>
             </div>
             <a href="write.php" id = "move" class="btn btn-success btn-lg" data-aos="zoom-in">New</a>
-            <a href="update.php" id = "move" class="btn btn-success btn-lg" data-aos="zoom-in">Update</a>
+            <a href="update.php?id=<?php echo $row['id'];?>" id = "move" class="btn btn-success btn-lg" data-aos="zoom-in">Update</a>
             <a href="delete.php" id = "move" class="btn btn-danger btn-lg" data-aos="zoom-in">Delete</a> 
-        
+            
             <div id="disqus_thread"></div>
                 <script>
                     (function() { // DON'T EDIT BELOW THIS LINE
