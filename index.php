@@ -63,6 +63,8 @@ require("lib/readingDB.php");
         <div id="demo"><h2 data-aos="zoom-in">Welcome to Web Application</h2></div>
             <script>
                 function getData(d1){
+                    document.getElementById('move1').href="update.php?id="+d1;
+                    document.getElementById('move2').href="delete.php?id="+d1;
                     $.ajax({  
                         url:"read.php",
                         method:"POST", 
@@ -71,20 +73,21 @@ require("lib/readingDB.php");
                             document.getElementById('demo').innerHTML=data; 
                         }
                     });
-                    return d1;
                 }
             </script>
     </article>
         <hr>
         <div id="control">
-            <div class="btn-group" role="group" aria-label="..." data-aos="zoom-in">
+        <!-- day and night mode -->
+            <div class="btn-group" role="group" aria-label="..." data-aos="zoom-in"> 
                 <input type="button" value="white" id="white_btn" class="btn btn-info btn-lg"/>
                 <input type="button" value="black" id="black_btn" class="btn btn-info btn-lg"/>
             </div>
+            <!-- edit button -->
             <a href="write.php" id = "move" class="btn btn-success btn-lg" data-aos="zoom-in">New</a>
-            <a href="update.php?id=<?php echo $row['id'];?>" id = "move" class="btn btn-success btn-lg" data-aos="zoom-in">Update</a>
-            <a href="delete.php" id = "move" class="btn btn-danger btn-lg" data-aos="zoom-in">Delete</a> 
-            
+            <a href="update.php" id = "move1" class="btn btn-success btn-lg" data-aos="zoom-in">Update</a>
+            <a href="delete.php" id = "move2" class="btn btn-danger btn-lg" data-aos="zoom-in">Delete</a> 
+            <!-- reply -->
             <div id="disqus_thread"></div>
                 <script>
                     (function() { // DON'T EDIT BELOW THIS LINE
