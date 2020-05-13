@@ -64,6 +64,8 @@ require("lib/readingDB.php");
             </div>
         </div>
     </div>
+    <script src="http://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
+    <script src="mouseeffect.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

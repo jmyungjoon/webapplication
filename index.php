@@ -20,8 +20,11 @@ require("lib/readingDB.php");
     <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
 </head>
 <body id="target">
+    <script src="http://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
+    <script src="mouseeffect.js"></script>
     <div class="container-fluid">
         <header class="jumbotron text-center">
             <div data-aos="fade-down">
@@ -77,7 +80,7 @@ require("lib/readingDB.php");
             </script>
     </article>
         <hr>
-        <div id="control">
+        <div id="control" >
         <!-- day and night mode -->
             <div class="btn-group" role="group" aria-label="..." data-aos="zoom-in"> 
                 <input type="button" value="white" id="white_btn" class="btn btn-info btn-lg"/>
@@ -104,6 +107,8 @@ require("lib/readingDB.php");
     </div>
     
     <script src="script.js"></script>
+    
+
     
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
@@ -135,5 +140,6 @@ require("lib/readingDB.php");
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+
 </body>
 </html>
